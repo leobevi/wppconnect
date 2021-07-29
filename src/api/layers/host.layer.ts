@@ -27,7 +27,6 @@ import {
   isAuthenticated,
   isInsideChat,
   needsToScan,
-  retrieveQR,
 } from '../../controllers/auth';
 import { sleep } from '../../utils/sleep';
 import { defaultLogger, LogLevel } from '../../utils/logger';
@@ -113,7 +112,12 @@ export class HostLayer {
       this.log('verbose', 'Injecting session token', { type: 'token' });
     }
 
-    await initWhatsapp(this.page, sessionToken, this.options.whatsappVersion);
+    await initWhatsapp(
+      this.page,
+      sessionToken,
+      !this.options?.puppeteerOptions?.userDataDir,
+      this.options.whatsappVersion
+    );
 
     this.page.on('load', () => {
       this.log('verbose', 'Page loaded', { type: 'page' });
@@ -130,9 +134,11 @@ export class HostLayer {
     await injectApi(this.page)
       .then(() => {
         this.log('verbose', 'wapi.js injected');
-        this.getWAVersion().then((version) => {
-          this.log('info', `WhatsApp WEB version: ${version}`);
-        });
+        this.getWAVersion()
+          .then((version) => {
+            this.log('info', `WhatsApp WEB version: ${version}`);
+          })
+          .catch(() => null);
       })
       .catch((e) => {
         this.log('verbose', 'wapi.js failed');
@@ -188,9 +194,6 @@ export class HostLayer {
     let qrResult: ScrapQrcode | undefined;
 
     qrResult = await scrapeImg(this.page).catch(() => undefined);
-    if (!qrResult || !qrResult.urlCode) {
-      qrResult = await retrieveQR(this.page).catch(() => undefined);
-    }
 
     return qrResult;
   }
@@ -206,10 +209,7 @@ export class HostLayer {
       }
 
       const result = await this.getQrCode();
-      if (!result?.urlCode) {
-        break;
-      }
-      if (urlCode !== result.urlCode) {
+      if (result?.urlCode && urlCode !== result.urlCode) {
         urlCode = result.urlCode;
         attempt++;
 

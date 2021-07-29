@@ -1,13 +1,21 @@
 version: 2
 updates:
+  - package-ecosystem: 'github-actions'
+    directory: '/'
+    schedule:
+      interval: 'daily'
+
   - package-ecosystem: npm
     directory: '/'
     schedule:
       interval: daily
-    open-pull-requests-limit: 10
+    open-pull-requests-limit: 20
     ignore:
       - dependency-name: '@types/node'
         versions:
           - '>= 15.a'
       - dependency-name: '@types/puppeteer'
+      - dependency-name: 'latest-version'
+        versions:
+          - '>= 6.a'
       - dependency-name: 'puppeteer'

@@ -117,7 +117,8 @@ export const storeObjects = [
   },
   {
     id: 'pinChat',
-    conditions: (module) => (module.setPin ? module : null),
+    conditions: (module) =>
+      module.setPin.toString().includes('.unproxy') ? module : null,
   },
   {
     id: 'sendDelete',
@@ -410,5 +411,12 @@ export const storeObjects = [
   {
     id: 'sendCallSignalingMsg',
     conditions: (module) => module.sendCallSignalingMsg,
+  },
+  {
+    id: 'checkNumberInfo',
+    conditions: (module) =>
+      module.default.toString().includes('Should not reach queryExists MD')
+        ? module.default
+        : null,
   },
 ];

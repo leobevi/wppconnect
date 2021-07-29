@@ -1,3 +1,42 @@
+## 1.8.9 (2021-07-27)
+
+
+### Bug Fixes
+
+* Corrigido a função de fixar conversas (pinChat) (fix [#338](https://github.com/wppconnect-team/wppconnect/issues/338)) ([f6bf1f3](https://github.com/wppconnect-team/wppconnect/commit/f6bf1f3f1598719d38eeb9d84bf3a9c0d87de18d))
+
+
+
+## 1.8.8 (2021-07-27)
+
+
+### Bug Fixes
+
+* Corrigido problema de ES Module (fix [#362](https://github.com/wppconnect-team/wppconnect/issues/362)) ([dcdefc4](https://github.com/wppconnect-team/wppconnect/commit/dcdefc4e7e0dbeb5cd3678ee0b7e7f92e8210dba))
+
+
+
+## 1.8.7 (2021-07-26)
+
+
+
+## 1.8.6 (2021-07-23)
+
+
+
+## [1.8.5](https://github.com/wppconnect-team/wppconnect/compare/v1.8.4...v1.8.5) (2021-07-20)
+
+
+
+## 1.8.4 (2021-07-20)
+
+
+### Bug Fixes
+
+* Corrigido o envio de arquivos de tipos de áudio via URL (fix [#329](https://github.com/wppconnect-team/wppconnect/issues/329)) ([6e8b836](https://github.com/wppconnect-team/wppconnect/commit/6e8b836f40ecda9df4870b09d6fc11410a15e1f6))
+
+
+
 ## 1.8.3 (2021-07-14)
 
 
